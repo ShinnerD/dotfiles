@@ -36,6 +36,12 @@ if ! gh auth status >/dev/null 2>&1; then
   gh auth login
 fi
 
+echo "Generating locales.."
+for loc in en_US.UTF-8 en_DK.UTF-8; do
+  sudo sed -i "s/^#\s*\(${loc//./\\.} UTF-8\)/\1/" /etc/locale.gen
+done
+sudo locale-gen
+
 echo "Fetching dotfiles.."
 if [ -d "$DOTFILES_DIR/.git" ]; then
   git -C "$DOTFILES_DIR" pull
