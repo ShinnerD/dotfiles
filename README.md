@@ -10,6 +10,7 @@ One script installs everything, generates locales, backs up any existing config,
 |-----------|----------|
 | `zsh/`    | `.zshrc`, `.p10k.zsh` |
 | `kitty/`  | `kitty.conf`, `current-theme.conf` (in `.config/kitty/`) |
+| `bin/`    | `arch-maintain` |
  
 ### Packages installed
  
@@ -47,7 +48,7 @@ Log out and back in afterwards so the default shell change takes effect.
 4. Prompts for `gh auth login` if you aren't already logged in to GitHub.
 5. Clones this repo to `~/dotfiles`, or pulls if it already exists.
 6. Moves any existing `.zshrc`, `.p10k.zsh`, `kitty.conf` and `current-theme.conf` to `~/.dotfiles-backup/<timestamp>/`.
-7. Runs `stow --no-folding zsh kitty` to symlink the dotfiles into `$HOME`.
+7. Runs `stow --no-folding zsh kitty bin` to symlink the files into `$HOME`.
 8. Sets zsh as the default shell with `chsh`.
 The script is safe to re-run: packages are installed with `--needed`, locale lines that are already enabled are left alone, and the repo is pulled rather than re-cloned.
  
@@ -57,8 +58,8 @@ Once the packages are installed, you can manage the dotfiles directly with Stow:
  
 ```bash
 cd ~/dotfiles
-stow --no-folding zsh kitty     # link
-stow -D zsh kitty               # unlink
+stow --no-folding zsh kitty bin # link
+stow -D zsh kitty bin           # unlink
 stow --no-folding -R zsh        # re-link one package
 ```
  
@@ -86,13 +87,13 @@ stow --no-folding -R zsh        # re-link one package
 
 ## System maintenance
 
-`arch-maintenance.sh` is a separate script for keeping an installed system tidy. It needs `yay` and installs `pacman-contrib` itself if it's missing.
+`arch-maintain` is available for keeping an installed system tidy. It needs `yay` and installs `pacman-contrib` itself if it's missing.
 
 ```bash
-./arch-maintenance.sh            # run everything (same as "all")
-./arch-maintenance.sh update     # news + full system update
-./arch-maintenance.sh clean      # orphans, caches, journal
-./arch-maintenance.sh check      # read-only health checks
+arch-maintain        # run everything (same as "all")
+arch-maintain update # news + full system update
+arch-maintain clean  # orphans, caches, journal
+arch-maintain check  # read-only health checks
 ```
 
 | Mode | What it does |

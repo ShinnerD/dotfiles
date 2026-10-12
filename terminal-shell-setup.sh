@@ -49,26 +49,27 @@ else
   git clone "$DOTFILES_REPO" "$DOTFILES_DIR"
 fi
 
-echo "Backing up existing dotfiles to $BACKUP_DIR.."
+echo "Backing up existing files to $BACKUP_DIR.."
 mkdir -p "$BACKUP_DIR"
 for f in \
   "$HOME/.zshrc" \
   "$HOME/.p10k.zsh" \
   "$HOME/.config/kitty/kitty.conf" \
-  "$HOME/.config/kitty/current-theme.conf"
+  "$HOME/.config/kitty/current-theme.conf" \
+  "$HOME/.local/bin/arch-maintain"
 do
   if [ -e "$f" ] || [ -L "$f" ]; then
     mv "$f" "$BACKUP_DIR/"
   fi
 done
 
-echo "Stowing dotfiles.."
+echo "Stowing files.."
 cd "$DOTFILES_DIR"
-stow --no-folding zsh kitty
+stow --no-folding zsh kitty bin
 
 if [ "$(basename "$SHELL")" != "zsh" ]; then
   echo "Setting zsh as default shell.."
   chsh -s "$(command -v zsh)"
 fi
 
-echo "Done. Exit terminal and open Kitty."
+echo "Done."
