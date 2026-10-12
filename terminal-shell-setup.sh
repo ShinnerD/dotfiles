@@ -7,7 +7,7 @@ BACKUP_DIR="$HOME/.dotfiles-backup/$(date +%Y%m%d-%H%M%S)"
 
 PACMAN_PACKAGES=(
   base-devel git github-cli stow
-  kitty zsh
+  kitty zsh neovim
   zsh-autosuggestions zsh-syntax-highlighting zsh-history-substring-search
   fzf zoxide
   ttf-meslo-nerd ttf-hack-nerd
@@ -56,8 +56,8 @@ for f in \
   "$HOME/.p10k.zsh" \
   "$HOME/.config/kitty/kitty.conf" \
   "$HOME/.config/kitty/current-theme.conf" \
-  "$HOME/.local/bin/arch-maintain"
-do
+  "$HOME/.local/bin/arch-maintain" \
+  "$HOME/.config/nvim"; do
   if [ -e "$f" ] || [ -L "$f" ]; then
     mv "$f" "$BACKUP_DIR/"
   fi
@@ -65,7 +65,7 @@ done
 
 echo "Stowing files.."
 cd "$DOTFILES_DIR"
-stow --no-folding zsh kitty bin
+stow --no-folding zsh kitty bin nvim
 
 if [ "$(basename "$SHELL")" != "zsh" ]; then
   echo "Setting zsh as default shell.."

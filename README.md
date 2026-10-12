@@ -11,16 +11,18 @@ One script installs everything, generates locales, backs up any existing config,
 | `zsh/`    | `.zshrc`, `.p10k.zsh` |
 | `kitty/`  | `kitty.conf`, `current-theme.conf` (in `.config/kitty/`) |
 | `bin/`    | `arch-maintain` |
+| `nvim/`    | `NeoVim configuration` |
  
 ### Packages installed
  
 **From the official repos (pacman)**
  
-- `kitty`, `zsh`
+- `kitty`, `zsh`, `neovim`
 - `zsh-autosuggestions`, `zsh-syntax-highlighting`, `zsh-history-substring-search`
 - `fzf`, `zoxide`
 - `ttf-meslo-nerd`, `ttf-hack-nerd`
 - `git`, `github-cli`, `stow`, `base-devel`
+
 **From the AUR (yay)**
  
 - `zsh-theme-powerlevel10k-git`
