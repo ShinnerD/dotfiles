@@ -21,7 +21,7 @@ One script installs everything, generates locales, backs up any existing config,
 - `zsh-autosuggestions`, `zsh-syntax-highlighting`, `zsh-history-substring-search`
 - `fzf`, `zoxide`
 - `ttf-meslo-nerd`, `ttf-hack-nerd`
-- `git`, `github-cli`, `stow`, `base-devel`
+- `git`, `github-cli`, `lazygit`, `stow`, `base-devel`
 
 **From the AUR (yay)**
  
