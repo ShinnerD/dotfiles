@@ -50,7 +50,7 @@ Log out and back in afterwards so the default shell change takes effect.
 4. Prompts for `gh auth login` if you aren't already logged in to GitHub.
 5. Clones this repo to `~/dotfiles`, or pulls if it already exists.
 6. Moves any existing `.zshrc`, `.p10k.zsh`, `kitty.conf` and `current-theme.conf` to `~/.dotfiles-backup/<timestamp>/`.
-7. Runs `stow --no-folding zsh kitty bin` to symlink the files into `$HOME`.
+7. Runs `stow --no-folding zsh kitty bin nvim` to symlink the files into `$HOME`.
 8. Sets zsh as the default shell with `chsh`.
 The script is safe to re-run: packages are installed with `--needed`, locale lines that are already enabled are left alone, and the repo is pulled rather than re-cloned.
  
