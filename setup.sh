@@ -7,6 +7,7 @@ BACKUP_DIR="$HOME/.dotfiles-backup/$(date +%Y%m%d-%H%M%S)"
 
 PACMAN_PACKAGES=(
   base-devel git github-cli lazygit stow
+  nodejs npm go
   kitty zsh neovim
   zsh-autosuggestions zsh-syntax-highlighting zsh-history-substring-search
   fzf zoxide
