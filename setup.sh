@@ -10,7 +10,7 @@ PACMAN_PACKAGES=(
   nodejs npm go
   kitty zsh neovim
   zsh-autosuggestions zsh-syntax-highlighting zsh-history-substring-search
-  fzf zoxide fd luarocks
+  fzf zoxide fd luarocks tree-sitter-cli
   ttf-meslo-nerd ttf-hack-nerd
 )
 
