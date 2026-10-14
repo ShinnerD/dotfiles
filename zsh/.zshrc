@@ -8,6 +8,8 @@ fi
 # Add .local/bin to PATH
 export PATH="$HOME/.local/bin:$PATH"
 
+alias gg="lazygit"
+
 HISTFILE=~/.histfile
 HISTSIZE=1000
 SAVEHIST=1000
