@@ -65,7 +65,8 @@ done
 
 echo "Stowing files.."
 cd "$DOTFILES_DIR"
-stow --no-folding zsh kitty bin nvim
+stow --no-folding zsh kitty bin
+stow nvim
 
 if [ "$(basename "$SHELL")" != "zsh" ]; then
   echo "Setting zsh as default shell.."
