@@ -21,7 +21,7 @@ One script installs everything, generates locales, backs up any existing config,
 - nodejs npm go
 - kitty zsh neovim
 - zsh-autosuggestions zsh-syntax-highlighting zsh-history-substring-search
-- fzf zoxide
+- fzf zoxide fd
 - ttf-meslo-nerd ttf-hack-nerd
 
 #### From the AUR (yay)
