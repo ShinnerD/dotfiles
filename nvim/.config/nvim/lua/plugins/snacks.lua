@@ -24,6 +24,7 @@ return {
 		},
 		indent = { enabled = true },
 		input = { enabled = true },
+    image = { enabled = true },
 		git = { enabled = true },
 		picker = { enabled = true },
 		explorer = { enabled = true },
