@@ -82,6 +82,9 @@ return {
       { "<leader>.", function() Snacks.scratch() end,        desc = "Toggle Scratch Buffer" },
       { "<leader>S",  function() Snacks.scratch.select() end, desc = "Select Scratch Buffer" },
 
+      -- UI (other mappings in snacks.lua)
+      { "<leader>um", "<cmd>RenderMarkdown toggle<cr>", desc = "Toggle Markdown Render" },
+
       -- Windows
       { "<leader>w", proxy = "<c-w>", group = "Windows" },
 
