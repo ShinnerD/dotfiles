@@ -51,6 +51,7 @@ return {
       { "<leader>jm", "<cmd>JavaRefactorExtractMethod<cr>",   desc = "Extract Method",   mode = { "n", "v" } },
       { "<leader>jr", function() Snacks.terminal("./gradlew bootRun") end, desc = "Gradle bootRun" },
       { "<leader>jC", function() Snacks.terminal("./gradlew check") end,    desc = "Gradle check" },
+      { "<leader>jn", function() require("java-new").prompt() end, desc = "New Java File Template" },
 
       -- Git
       { "<leader>gg", function() Snacks.lazygit() end,          desc = "Lazygit" },
