@@ -41,6 +41,7 @@ return {
       { "<leader>su", function() Snacks.picker.undo() end,            desc = "Undo History" },
       { "<leader>sw", function() Snacks.picker.grep_word() end,       desc = "Grep Word", mode = { "n", "x" } },
       { "<leader>sl", function() Snacks.picker.lines() end,           desc = "Lines in Buffer" },
+      { "<leader>sn", function() Snacks.picker.notifications() end, desc = "Notification History" },
 
       -- Java (nvim-java commands)
       { "<leader>jt", "<cmd>JavaTestRunCurrentMethod<cr>",    desc = "Test Method" },
@@ -84,6 +85,7 @@ return {
 
       -- UI (other mappings in snacks.lua)
       { "<leader>um", "<cmd>RenderMarkdown toggle<cr>", desc = "Toggle Markdown Render" },
+      { "<leader>un", function() Snacks.notifier.hide() end,        desc = "Dismiss Notifications" },
 
       -- Windows
       { "<leader>w", proxy = "<c-w>", group = "Windows" },
