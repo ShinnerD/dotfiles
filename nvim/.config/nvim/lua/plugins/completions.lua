@@ -4,72 +4,35 @@ return {
     version = "v2.*",
     build = "make install_jsregexp", -- optional; remove if you don't have make
     dependencies = { "rafamadriz/friendly-snippets" },
+    config = function()
+      require("luasnip.loaders.from_vscode").lazy_load()
+    end,
   },
   {
-    "hrsh7th/nvim-cmp",
-    version = false,
+    "saghen/blink.cmp",
+    version = "1.*", -- release tags ship a prebuilt Rust fuzzy matcher
     event = { "InsertEnter", "CmdlineEnter" },
-    dependencies = {
-      "hrsh7th/cmp-nvim-lsp",
-      "hrsh7th/cmp-nvim-lsp-signature-help", -- method parameter hints (great for Java)
-      "hrsh7th/cmp-buffer",
-      "hrsh7th/cmp-path",
-      "saadparwaiz1/cmp_luasnip",
-      "L3MON4D3/LuaSnip",
+    dependencies = { "L3MON4D3/LuaSnip" },
+    opts = {
+      snippets = { preset = "luasnip" },
+      keymap = {
+        -- default preset: <C-space> show, <C-e> hide, <C-y> accept, <C-n>/<C-p> select,
+        -- <C-b>/<C-f> scroll docs, <C-k> signature help
+        preset = "default",
+        ["<CR>"] = { "accept", "fallback" },
+        ["<Tab>"] = { "select_next", "snippet_forward", "fallback" },
+        ["<S-Tab>"] = { "select_prev", "snippet_backward", "fallback" },
+      },
+      completion = {
+        list = { selection = { preselect = true, auto_insert = true } },
+        menu = { border = "rounded" },
+        documentation = { auto_show = true, window = { border = "rounded" } },
+      },
+      signature = { enabled = true, window = { border = "rounded" } },
+      sources = {
+        default = { "lsp", "path", "snippets", "buffer" },
+      },
+      fuzzy = { implementation = "prefer_rust_with_warning" },
     },
-    config = function()
-      local cmp = require("cmp")
-      local luasnip = require("luasnip")
-
-      require("luasnip.loaders.from_vscode").lazy_load()
-
-      cmp.setup({
-        completion = { completeopt = "menu,menuone,noinsert" },
-        snippet = {
-          expand = function(args)
-            luasnip.lsp_expand(args.body)
-          end,
-        },
-        window = {
-          completion = cmp.config.window.bordered(),
-          documentation = cmp.config.window.bordered(),
-        },
-        mapping = cmp.mapping.preset.insert({
-          ["<C-b>"] = cmp.mapping.scroll_docs(-4),
-          ["<C-f>"] = cmp.mapping.scroll_docs(4),
-          ["<C-Space>"] = cmp.mapping.complete(),
-          ["<C-e>"] = cmp.mapping.abort(),
-          ["<CR>"] = cmp.mapping.confirm({ select = false }),
-
-          ["<Tab>"] = cmp.mapping(function(fallback)
-            if cmp.visible() then
-              cmp.select_next_item()
-            elseif luasnip.expand_or_locally_jumpable() then
-              luasnip.expand_or_jump()
-            else
-              fallback()
-            end
-          end, { "i", "s" }),
-
-          ["<S-Tab>"] = cmp.mapping(function(fallback)
-            if cmp.visible() then
-              cmp.select_prev_item()
-            elseif luasnip.locally_jumpable(-1) then
-              luasnip.jump(-1)
-            else
-              fallback()
-            end
-          end, { "i", "s" }),
-        }),
-        sources = cmp.config.sources({
-          { name = "nvim_lsp" },
-          { name = "nvim_lsp_signature_help" },
-          { name = "luasnip" },
-        }, {
-          { name = "path" },
-          { name = "buffer" },
-        }),
-      })
-    end,
   },
 }
