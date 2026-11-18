@@ -62,6 +62,7 @@ for f in \
   "$HOME/.p10k.zsh" \
   "$HOME/.config/kitty/kitty.conf" \
   "$HOME/.config/kitty/current-theme.conf" \
+  "$HOME/.config/herdr/config.toml" \
   "$HOME/.local/bin/arch-maintain" \
   "$HOME/.config/nvim"; do
   if [ -e "$f" ] || [ -L "$f" ]; then
@@ -71,7 +72,7 @@ done
 
 echo "Stowing files.."
 cd "$DOTFILES_DIR"
-stow --no-folding zsh kitty bin
+stow --no-folding zsh kitty bin herdr
 stow nvim
 
 if [ "$(basename "$SHELL")" != "zsh" ]; then

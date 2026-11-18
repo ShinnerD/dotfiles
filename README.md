@@ -10,6 +10,7 @@ One script installs everything, generates locales, backs up any existing config,
 |-----------|----------|
 | `zsh/`    | `.zshrc`, `.p10k.zsh` |
 | `kitty/`  | `kitty.conf`, `current-theme.conf` |
+| `herdr/`  | `config.toml` |
 | `bin/`    | `arch-maintain` |
 | `nvim/`    | `NeoVim configuration` |
 
@@ -31,7 +32,7 @@ One script installs everything, generates locales, backs up any existing config,
 
 #### Other
 
-- [`herdr`](https://herdr.dev) — terminal workspace manager for coding agents, installed with its official script (`curl -fsSL https://herdr.dev/install.sh | sh`). Skipped if already installed. Its config is not managed by this repo.
+- [`herdr`](https://herdr.dev) — terminal workspace manager for coding agents, installed with its official script (`curl -fsSL https://herdr.dev/install.sh | sh`). Skipped if already installed. Its `config.toml` is stowed from `herdr/`.
 
 ## Quick start
 
@@ -55,8 +56,8 @@ Log out and back in afterwards so the default shell change takes effect.
 4. Installs the `herdr` CLI via its install script if it isn't already installed.
 5. Prompts for `gh auth login` if you aren't already logged in to GitHub.
 6. Clones this repo to `~/dotfiles`, or pulls if it already exists.
-7. Moves any existing `.zshrc`, `.p10k.zsh`, `kitty.conf` and `current-theme.conf` to `~/.dotfiles-backup/<timestamp>/`.
-8. Runs `stow --no-folding zsh kitty bin nvim` to symlink the files into `$HOME`.
+7. Moves any existing `.zshrc`, `.p10k.zsh`, `kitty.conf`, `current-theme.conf` and herdr's `config.toml` to `~/.dotfiles-backup/<timestamp>/`.
+8. Runs `stow --no-folding zsh kitty bin herdr` and `stow nvim` to symlink the files into `$HOME`.
 9. Sets zsh as the default shell with `chsh`.
 The script is safe to re-run: packages are installed with `--needed`, herdr is skipped if present, locale lines that are already enabled are left alone, and the repo is pulled rather than re-cloned.
 
@@ -66,12 +67,12 @@ Once the packages are installed, you can manage the dotfiles directly with Stow:
 
 ```bash
 cd ~/dotfiles
-stow --no-folding zsh kitty bin # link
-stow -D zsh kitty bin           # unlink
+stow --no-folding zsh kitty bin herdr # link
+stow -D zsh kitty bin herdr           # unlink
 stow --no-folding -R zsh        # re-link one package
 ```
 
-`--no-folding` makes Stow link individual files rather than whole directories, so other programs can still write into `~/.config/kitty/` without ending up inside this repo.
+`--no-folding` makes Stow link individual files rather than whole directories, so other programs (and herdr's sockets, logs and session state) can still write into `~/.config/kitty/` and `~/.config/herdr/` without ending up inside this repo.
 
 ## Notes
 
