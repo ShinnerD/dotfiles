@@ -32,6 +32,11 @@ fi
 echo "Installing AUR packages.."
 yay -S --needed --noconfirm "${AUR_PACKAGES[@]}"
 
+if ! command -v herdr >/dev/null 2>&1 && [ ! -x "$HOME/.local/bin/herdr" ]; then
+  echo "Installing herdr.."
+  curl -fsSL https://herdr.dev/install.sh | sh
+fi
+
 if ! gh auth status >/dev/null 2>&1; then
   echo "Please login to GitHub.."
   gh auth login

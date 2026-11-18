@@ -29,6 +29,10 @@ One script installs everything, generates locales, backs up any existing config,
 - `zsh-theme-powerlevel10k-git`
 `yay` is bootstrapped automatically if it isn't already installed.
 
+#### Other
+
+- [`herdr`](https://herdr.dev) — terminal workspace manager for coding agents, installed with its official script (`curl -fsSL https://herdr.dev/install.sh | sh`). Skipped if already installed. Its config is not managed by this repo.
+
 ## Quick start
 
 On a fresh Arch install:
@@ -48,12 +52,13 @@ Log out and back in afterwards so the default shell change takes effect.
 1. Runs a full system update (`pacman -Syu`) and installs all official packages in one transaction.
 2. Generates the `en_US.UTF-8` and `en_DK.UTF-8` locales. Without these, tools like fzf's Perl-based shell integration print locale warnings.
 3. Installs `yay` if missing, then installs the AUR packages.
-4. Prompts for `gh auth login` if you aren't already logged in to GitHub.
-5. Clones this repo to `~/dotfiles`, or pulls if it already exists.
-6. Moves any existing `.zshrc`, `.p10k.zsh`, `kitty.conf` and `current-theme.conf` to `~/.dotfiles-backup/<timestamp>/`.
-7. Runs `stow --no-folding zsh kitty bin nvim` to symlink the files into `$HOME`.
-8. Sets zsh as the default shell with `chsh`.
-The script is safe to re-run: packages are installed with `--needed`, locale lines that are already enabled are left alone, and the repo is pulled rather than re-cloned.
+4. Installs the `herdr` CLI via its install script if it isn't already installed.
+5. Prompts for `gh auth login` if you aren't already logged in to GitHub.
+6. Clones this repo to `~/dotfiles`, or pulls if it already exists.
+7. Moves any existing `.zshrc`, `.p10k.zsh`, `kitty.conf` and `current-theme.conf` to `~/.dotfiles-backup/<timestamp>/`.
+8. Runs `stow --no-folding zsh kitty bin nvim` to symlink the files into `$HOME`.
+9. Sets zsh as the default shell with `chsh`.
+The script is safe to re-run: packages are installed with `--needed`, herdr is skipped if present, locale lines that are already enabled are left alone, and the repo is pulled rather than re-cloned.
 
 ## Manual usage
 
